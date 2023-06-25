@@ -113,3 +113,39 @@ recap -
     then background will execute
     then test scenario
     then hooks will execute
+
+6/25/23 ====================== CLASS4 ======================================
+
+recap -
+in the framework, we should not pass any data hard coded -
+to pass data we have config.properties file
+config reader class - here in this class, we read our data
+
+constants - to keep all the paths of the constants classes and file, we use this class
+
+Background - in one feature file, when the flow is same for all the scenarios, you just
+keep these similar steps in background, it is limited to one feature file
+
+Hooks - we have 2 hooks,
+@Before - pre condition for the complete project
+@After - post condition for the complete project
+
+Hooks must be declared in steps package
+
+test runner -
+features,
+glue,
+dryRun,
+tags,
+plugin - pretty
+monochrome - true
+
+we need to write a function for screenshot which will save my screenshot for all the
+test cases with different names so that it will not be overriden
+
+screenshot method in cucumber - here it accepts array of byte for pictures
+
+POM - page object model design pattern
+for every screen/page in the application, we create a separate  class for it and
+keep all the locators/webelements of this page in this class and we create a key of
+locators which we will pass in every step.

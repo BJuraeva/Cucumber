@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
 
@@ -26,17 +27,25 @@ public class LoginSteps extends CommonMethods {
     }
     @When("user enter valid admin username and password")
     public void user_enter_valid_admin_username_and_password() {
-        WebElement usernameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        //creating the obj of the class all the web-elements from it
+        //LoginPage loginPage = new LoginPage();
+        //WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        //WebElement passwordField = driver.findElement(By.id("txtPassword"));
 
         // entering the credentials
-        usernameField.sendKeys(ConfigReader.getPropertyValue("username"));
-        passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
+        // usernameField.sendKeys(ConfigReader.getPropertyValue("username"));
+        // passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
+        sendText(ConfigReader.getPropertyValue("admin"), loginPage.usernameField);
+        sendText(ConfigReader.getPropertyValue("Hum@nhrm123"), loginPage.passwordField);
     }
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
-        WebElement loginButton = driver.findElement(By.name("Submit"));
-        loginButton.click();
+        //LoginPage loginPage = new LoginPage();
+        //WebElement loginButton = driver.findElement(By.name("Submit"));
+        // loginButton.click();
+        // click(loginPage.loginButton);
+
+        click(loginPage.loginButton);
     }
     @Then("user is successfully logged in the application")
     public void user_is_successfully_logged_in_the_application() {
@@ -44,17 +53,25 @@ public class LoginSteps extends CommonMethods {
     }
     @When("user enters ess username and password")
     public void user_enters_ess_username_and_password() {
-        WebElement userNameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        userNameField.sendKeys("dalima123");
-        passwordField.sendKeys("Hum@nhrm123");
+        // LoginPage loginPage = new LoginPage();
+        // WebElement userNameField = driver.findElement(By.id("txtUsername"));
+        // WebElement passwordField = driver.findElement(By.id("txtPassword"));
+
+        // userNameField.sendKeys("dalima123");
+        // passwordField.sendKeys("Hum@nhrm123");
+        sendText("dalima123", loginPage.usernameField);
+        sendText("Hum@nhrm123", loginPage.passwordField);
     }
     @When("user enters invalid admin username and password")
     public void user_enters_invalid_admin_username_and_password() {
-        WebElement userNameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        userNameField.sendKeys("admin123");
-        passwordField.sendKeys("Hum@nhrm123");
+        // LoginPage loginPage = new LoginPage();
+        // WebElement userNameField = driver.findElement(By.id("txtUsername"));
+        // WebElement passwordField = driver.findElement(By.id("txtPassword"));
+
+        // userNameField.sendKeys("admin123");
+        // passwordField.sendKeys("Hum@nhrm123");
+        sendText("admin123", loginPage.usernameField);
+        sendText("Hum@nhrm123", loginPage.passwordField);
     }
     @Then("error message is displayed")
     public void error_message_is_displayed() {

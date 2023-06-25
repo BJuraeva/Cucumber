@@ -12,7 +12,8 @@ import org.junit.runner.RunWith;
         glue = "steps",
         // dryRun=true - it stops actual execution, it quickly scans all the steps
         // and will provide the missing step definition
-        dryRun = false, // dryRun = false it will execute the  steps code
+        // dryRun = false it will execute the  steps code
+        dryRun = false,
         tags = "@test",
         // monochrome = true -> it removes all irreverent info from the console and give you simple output
         monochrome = true,
