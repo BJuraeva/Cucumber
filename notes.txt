@@ -149,3 +149,21 @@ POM - page object model design pattern
 for every screen/page in the application, we create a separate  class for it and
 keep all the locators/webelements of this page in this class and we create a key of
 locators which we will pass in every step.
+
+6/28/23 ====================== CLASS5 ======================================
+
+recap -
+test runner class -
+
+POM - page object model design pattern -
+
+framework characteristics -
+
+it should be easily understandable
+it should be expandable
+it should be easy to maintain
+
+we created loginpage, employeesearchpage, dashboardpage, addemployeepage
+
+data driven testing - when your one test case executes against multiple set of data
+

@@ -35,8 +35,8 @@ public class LoginSteps extends CommonMethods {
         // entering the credentials
         // usernameField.sendKeys(ConfigReader.getPropertyValue("username"));
         // passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
-        sendText(ConfigReader.getPropertyValue("admin"), loginPage.usernameField);
-        sendText(ConfigReader.getPropertyValue("Hum@nhrm123"), loginPage.passwordField);
+        sendText(ConfigReader.getPropertyValue("username"), loginPage.usernameField);
+        sendText(ConfigReader.getPropertyValue("password"), loginPage.passwordField);
     }
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
@@ -78,6 +78,11 @@ public class LoginSteps extends CommonMethods {
         System.out.println("Error message is displayed");
     }
 
+    @When("user enters {string} and {string} and verifying the {string} for the combinations")
+    public void user_enters_and_and_verifying_the_for_the_combinations(String username, String password, String errorMessage) {
+        //we need to write the code here to match the errors
+
+    }
 
 
 

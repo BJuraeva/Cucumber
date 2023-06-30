@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         // and will provide the missing step definition
         // dryRun = false it will execute the  steps code
         dryRun = false,
-        tags = "@test",
+        tags = " @negative",
         // monochrome = true -> it removes all irreverent info from the console and give you simple output
         monochrome = true,
         // it used to print all the steps definition and scenario in console
