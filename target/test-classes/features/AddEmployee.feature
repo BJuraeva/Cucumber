@@ -30,6 +30,16 @@ Feature:  Adding employee in HRMS application
     |paster   |surma     |shalli  |
     |sana     |caty      |aim     |
 
+  @datatable
+  Scenario: adding multiple employees using data table
+    When user enters firstname and middlename and lastname and verify employee has added
+      |firstName|middleName|lastName|
+      |zara     |ms        |zaca    |
+      |mary     |ms        |django  |
+      |sadam    |ms        |adam    |
 
+  @excel
+  Scenario: adding multiple employees using excel file
+    When user adds multiple employees exel from "EmployeeDataBatch16" and verify it
 
 

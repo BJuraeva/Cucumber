@@ -2,9 +2,16 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
+import utils.Constants;
+import utils.ExcelReader;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import static utils.CommonMethods.driver;
 
@@ -60,7 +67,95 @@ public class AddEmployeeSteps extends CommonMethods {
         sendText(lastName, addEmployeePage.lastNameField);
     }
 
+    @When("user enters firstname and middlename and lastname and verify employee has added")
+    public void user_enters_firstname_and_middlename_and_lastname_and_verify_employee_has_added
+            (io.cucumber.datatable.DataTable dataTable) {
+        //we need list of maps to get multiple values from datatable which is coming
+        // from feature file
+        List<Map<String, String>> employeeNames = dataTable.asMaps();
 
+        for (Map<String, String> employee:employeeNames
+        ) {
+            //getting the values against the key in map
+            String firstNameValue = employee.get("firstName");
+            String middleNameValue = employee.get("middleName");
+            String lastNameValue = employee.get("lastName");
 
+            //filling the name in the fields
+            sendText(firstNameValue, addEmployeePage.firstNameField);
+            sendText(middleNameValue, addEmployeePage.middleNameField);
+            sendText(lastNameValue, addEmployeePage.lastNameField);
+            click(addEmployeePage.saveButton);
+            //after adding one employee, we will add another employee
+            //for this, we are clicking on add employee button in the loop ittself
+            click(dashboardPage.addEmployeeButton);
+        }
+
+    }
+
+    @When("user adds multiple employees exel from {string} and verify it")
+    public void user_adds_multiple_employees_exel_from_and_verify_it(String sheetName) throws InterruptedException {
+        // getting the data from exel file using parameters
+        List<Map<String, String>> newEmployees = ExcelReader.read(sheetName, Constants.EXCEL_READER_PATH);
+
+        Iterator<Map<String, String>> itr = newEmployees.iterator();
+
+        // it will check weather we have new element/value or not
+        while (itr.hasNext()){
+            // in this map we have data from every single employee one by one it will give us that data
+            Map <String, String> mapNewEmp = itr.next();
+            //we are filling the employee data now using mapNewEmp variable
+            //BATCH 16, KEYS WHAT WE ARE PASSING HERE SHOULD MATCH WITH THE KEYS IN EXCEL
+            sendText(mapNewEmp.get("firstName"), addEmployeePage.firstNameField);
+            sendText(mapNewEmp.get("middleName"), addEmployeePage.middleNameField);
+            sendText(mapNewEmp.get("lastName"), addEmployeePage.lastNameField);
+            sendText(mapNewEmp.get("photograph"), addEmployeePage.photograph);
+
+            // we can enter username and password only after selecting the checkbox
+            if (addEmployeePage.checkBoxLocator.isSelected()){
+                click(addEmployeePage.checkBoxLocator);
+            }
+            sendText(mapNewEmp.get("username"), addEmployeePage.usernameTextFieldBox);
+            sendText(mapNewEmp.get("password"), addEmployeePage.passwordTextFieldBox);
+            sendText(mapNewEmp.get("confirmPassword"), addEmployeePage.confirmPasswordBox);
+
+            // fetching the employee id from the UI using attribute method
+            String empIDValue = addEmployeePage.employeeIdField.getAttribute("value");
+            Assert.assertTrue(addEmployeePage.saveButton.isDisplayed());
+            click(addEmployeePage.saveButton);
+
+            Thread.sleep(3000);
+            //we have to verify that the employee has been added
+            click(dashboardPage.empListOption);
+            ////searching the employee using emp id which we just got
+            click(employeeSearchPage.searchButton);
+            //
+
+            // print the value from the table row
+            List<WebElement> rowData = driver.findElements(By.xpath("//table[@id='resultTable']/tbody/tr"));
+            for (int i = 0; i < rowData.size(); i++) {
+                System.out.println("I a inside the loop");
+                // it will return one by one all the data from the row
+                String rowText = rowData.get(i).getText();
+                //it will print the complete row data
+                //output of this will be empid firstname middlename lastname
+                System.out.println(rowText);
+                // we have to verify this data against the data coming from excel file
+
+                String expectedData = empIDValue + " "+mapNewEmp.get("firstName")+" "+
+                        mapNewEmp.get("middleName")+" "+mapNewEmp.get("lastName");
+
+                Assert.assertEquals(expectedData, rowText);
+                //you can use below code too to verify the data
+                //  Assert.assertTrue(expectedData.equals(rowText));
+                
+            }
+
+            // to add more employee we need to click on add employee button
+            click(dashboardPage.addEmployeeButton);
+
+        }
+
+    }
 
 }
