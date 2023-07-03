@@ -79,17 +79,18 @@ public class CommonMethods extends PageInitializer {
         sel.selectByIndex(index);
     }
 
-    public static byte[] takeScreenshot(String fileName) {
+    public static byte[] takeScreenshot(String fileName){
         TakesScreenshot ts = (TakesScreenshot) driver;
         //we write this line because cucumber accepts array of byte for screenshot
         byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
         File screenShot = ts.getScreenshotAs(OutputType.FILE);
         //in case if it doesn't find file name or path it will throw an exception
-        try {
+
+        try{
             FileUtils.copyFile(screenShot,
-                    new File(Constants.SCREENSHOT_FILEPATH + fileName + " " +
-                            getTimeStamp("yyyy-MM-dd-HH-mm-ss") + ".png"));
-        } catch (IOException e){
+                    new File(Constants.SCREENSHOT_FILEPATH + fileName+" "
+                            +getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"));
+        }catch (IOException e){
             e.printStackTrace();
         }
         return picBytes;

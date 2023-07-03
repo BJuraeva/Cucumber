@@ -168,6 +168,7 @@ we created loginpage, employeesearchpage, dashboardpage, addemployeepage
 data driven testing - when your one test case executes against multiple set of data
 
 07/01/23 ====================== CLASS6 ======================================
+
 recap -
 we passed data from feature file itself to add one employee
 
@@ -201,3 +202,60 @@ using excel files
 in excel file - we have 2 types of extensions
 .xls - HSSF workbook
 .xlsx - XSSF workbook
+
+07/02/23 ====================== CLASS7 ======================================
+
+recap -
+ examples table and data table -
+
+ in data table, we use scenario instead of scenario outline
+ data table is limited to one step but examples table works for all the scenario
+
+ in data table, we don't use examples key word and we don't pass keys in the step
+
+ hooks execute one time, background executes one time and scenario executes based on data set
+
+ adding the employees using excel file -
+ excel reader class to read the data from excel file
+ verified the employee has been added
+
+why reports - it is an artifact/proof that you have executed the scenario
+it gives you detailed information, how many test cases passed and failed
+
+html report - will be generated once you execute your code from runner class
+to open the report - right click on the report - select open in - select browser - chrome
+
+json report - we have to add plugin in runner class
+
+
+here in every framework - we need one point of execution and here this  point is
+pom.xml file (we add dependency, we add runner class, we add plugin, we execute)
+
+to execute runner class from pom.xml file, we need plugin (maven surefire plugin)
+
+
+build success message means your code is working fine and you can proceed further
+everytime we must execute test cases using pom.xml file
+
+to generate the report from pom.xml file, we need to add a plugin called
+maven cucumber reporting plugin
+
+we are generating the report without screenshot but we need screenshot for all test cases
+
+at the last step I will capture the screenshot
+so that even if it is passed or failed, it will give me that page
+
+there is a class in cucumber called Scenario class
+this scenario class from cucumber holds the complete information of your execution
+
+log 4j - it is a log file which we use for local execution related information
+log4j.xml file is responsible to integrate/add log messages into your framework
+log is the class in which you write all the methods
+DOM configurator is the place where you provide the path of log4j file
+and then you call all the methods to print your messages
+
+75-80 (success rate of automation)
+100 - 80 will be passed - 20 will be failed (example)
+
+rerun plugin we use to create failed.txt file
+this file has all the failed test cases which we can run from failed runner class

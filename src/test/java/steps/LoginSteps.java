@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
+import utils.Log;
 
 import java.time.Duration;
 
@@ -36,6 +38,11 @@ public class LoginSteps extends CommonMethods {
         // entering the credentials
         // usernameField.sendKeys(ConfigReader.getPropertyValue("username"));
         // passwordField.sendKeys(ConfigReader.getPropertyValue("password"));
+
+        ///we are calling DOMConfigurator which is asking for the file which we used
+        //to integrate logs in our project
+        DOMConfigurator.configure("log4j.xml");
+        Log.startTestCase("My batch 16 test case starts here");
         sendText(ConfigReader.getPropertyValue("username"), loginPage.usernameField);
         sendText(ConfigReader.getPropertyValue("password"), loginPage.passwordField);
     }
