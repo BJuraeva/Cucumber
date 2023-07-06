@@ -26,11 +26,12 @@ public class ExcelReader {
             // first row in excel file -> key row (header)
             Row headerRow = sheet.getRow(0);
             // we use for loop -> value row (.getPhysicalNumberOfRows() -> exist in .xlsx file)
-            for (int rows = 1; rows < sheet.getPhysicalNumberOfRows(); rows++) { // rows = 1 because 0 is already used in header
+            //for row, we take 1 index because 0 is already used for headers
+            for (int rows = 1; rows < sheet.getPhysicalNumberOfRows(); rows++) {
+                //this row is for values
                 Row row = sheet.getRow(rows);
-
                 Map<String, String> rowMap = new LinkedHashMap<>();
-                // we use nested for loop ->
+                //here, we are taking all the columns
                 for (int col = 0; col < row.getPhysicalNumberOfCells(); col++) {
                     String key = headerRow.getCell(col).toString();
                     String value = row.getCell(col).toString();

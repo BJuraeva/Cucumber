@@ -106,16 +106,17 @@ public class AddEmployeeSteps extends CommonMethods {
             Map <String, String> mapNewEmp = itr.next();
             //we are filling the employee data now using mapNewEmp variable
             //BATCH 16, KEYS WHAT WE ARE PASSING HERE SHOULD MATCH WITH THE KEYS IN EXCEL
-            sendText(mapNewEmp.get("firstName"), addEmployeePage.firstNameField);
-            sendText(mapNewEmp.get("middleName"), addEmployeePage.middleNameField);
+            sendText(mapNewEmp.get("firstName"),addEmployeePage.firstNameField);
             sendText(mapNewEmp.get("lastName"), addEmployeePage.lastNameField);
+            sendText(mapNewEmp.get("middleName"), addEmployeePage.middleNameField);
             sendText(mapNewEmp.get("photograph"), addEmployeePage.photograph);
 
+
             // we can enter username and password only after selecting the checkbox
-            if (addEmployeePage.checkBoxLocator.isSelected()){
+            if(!addEmployeePage.checkBoxLocator.isSelected()){
                 click(addEmployeePage.checkBoxLocator);
             }
-            sendText(mapNewEmp.get("username"), addEmployeePage.usernameTextFieldBox);
+            sendText(mapNewEmp.get("username"),addEmployeePage.usernameTextFieldBox);
             sendText(mapNewEmp.get("password"), addEmployeePage.passwordTextFieldBox);
             sendText(mapNewEmp.get("confirmPassword"), addEmployeePage.confirmPasswordBox);
 

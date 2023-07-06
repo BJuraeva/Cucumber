@@ -15,7 +15,7 @@ public class Hooks extends CommonMethods {
         // need this variable because my ss array return array of the byte
         byte[] pic;
 
-        // capturing the screenshot for report
+        // capturing the screenshot for report -> preCondition
         if(scenario.isFailed()) {
             pic = takeScreenshot("failed/" + scenario.getName());
         }else {

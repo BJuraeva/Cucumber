@@ -8,13 +8,14 @@ import pages.LoginPage;
 public class PageInitializer {
     public static LoginPage loginPage;
     public static DashboardPage dashboardPage;
-    public  static AddEmployeePage addEmployeePage;
+    public static AddEmployeePage addEmployeePage;
     public static EmployeeSearchPage employeeSearchPage;
 
+
     public static void initializePageObjects(){
-        loginPage= new LoginPage();
+        loginPage = new LoginPage();
         dashboardPage = new DashboardPage();
-        addEmployeePage =new AddEmployeePage();
+        addEmployeePage = new AddEmployeePage();
         employeeSearchPage = new EmployeeSearchPage();
     }
 }

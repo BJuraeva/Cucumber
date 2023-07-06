@@ -180,8 +180,6 @@ we use assertions to verify verification and validation checkpoints
 majorly we work with assertEquals and assertTrue for our test cases
 this assert class comes from org.junit
 
-*******innessa, please find the notes here as per your request*******
-
 in data table - hooks and background executes just one time
 in examples table - hooks and background executed as many times as data set
 
@@ -259,3 +257,5 @@ and then you call all the methods to print your messages
 
 rerun plugin we use to create failed.txt file
 this file has all the failed test cases which we can run from failed runner class
+
+07/05/23 ====================== CLASS8 ======================================
